@@ -81,13 +81,12 @@ class KeyCursorConfig(QWidget):
         # Key bindings scroll area
         key_binds_scroll_area = QScrollArea(self)
         key_binds_scroll_area.setFixedHeight(200)
+        key_binds_scroll_area.setWidgetResizable(True)
         key_binds_scroll_area.verticalScrollBar().setProperty(CLASS_PROPERTY_NAME, "scrollbar_black")
         key_binds_scroll_area.verticalScrollBar().setStyleSheet(self._style_loader.get_stylesheet("scrollbar"))
         key_binds_scroll_area.setProperty(CLASS_PROPERTY_NAME, "scroll_area")
-
         key_binds_widget = QWidget(key_binds_scroll_area)
         key_binds_widget.setProperty(CLASS_PROPERTY_NAME, "clear")
-
         key_binds_layout = QVBoxLayout(key_binds_widget)
         key_binds_layout.setProperty(CLASS_PROPERTY_NAME, "clear")
         key_binds_layout.setAlignment(Qt.AlignTop)
@@ -176,6 +175,8 @@ class KeyCursorConfig(QWidget):
         else:
             self._enable_button.setText("Disable")
             self._enable_button.setProperty(CLASS_PROPERTY_NAME, "button_cancel")
+        self._enable_button.style().unpolish(self._enable_button)
+        self._enable_button.style().polish(self._enable_button)
 
     def _update_key_binds_scroll_area(self):
         # Clear old checkboxes

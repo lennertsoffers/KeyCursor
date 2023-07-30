@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['..\\key_cursor\\main.py'],
+    ['..\\key_cursor\\KeyCursor.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -41,5 +41,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['..\\key_cursor_config\\assets\\icon.png'],
+    icon=['..\\key_cursor_config\\resources\\assets\\icon.png'],
 )

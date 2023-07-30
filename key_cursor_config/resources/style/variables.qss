@@ -15,7 +15,7 @@
 @font_size_normal = 13px
 
 # Image
-@image_arrow_down_black = url(./assets/arrow_down_black.png)
-@image_arrow_up_black = url(./assets/arrow_up_black.png)
-@image_arrow_down_white = url(./assets/arrow_down_white.png)
-@image_arrow_up_white = url(./assets/arrow_up_white.png)
+@image_arrow_down_black = url(./resources/assets/arrow_down_black.png)
+@image_arrow_up_black = url(./resources/assets/arrow_up_black.png)
+@image_arrow_down_white = url(./resources/assets/arrow_down_white.png)
+@image_arrow_up_white = url(./resources/assets/arrow_up_white.png)

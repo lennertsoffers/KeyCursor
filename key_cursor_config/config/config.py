@@ -5,7 +5,7 @@ font_poppins = QFont()
 font_poppins.setFamily("Poppins")
 
 # Images
-assets_dir = "../resources/assets"
+assets_dir = "./resources/assets"
 icon_path = f"{assets_dir}/icon.png"
 
 # Stylesheets
