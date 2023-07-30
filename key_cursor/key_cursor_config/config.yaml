@@ -1,0 +1,13 @@
+mappings:
+  J: Left
+  L: Right
+  I: Up
+  K: down
+  O: End
+  U: Home
+  i: up
+  j: left
+  k: down
+  l: right
+  o: end
+  u: home
