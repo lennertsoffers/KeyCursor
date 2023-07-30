@@ -1,0 +1,8 @@
+mappings:
+  A: A
+  B: A
+  E: A
+  F: A
+  l: A
+  s: A
+run_at_startup: false

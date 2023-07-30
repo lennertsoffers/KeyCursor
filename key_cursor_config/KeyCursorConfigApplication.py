@@ -4,14 +4,17 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication
 
+from config.config import *
 from core.Config import Config
 from core.autostart.AutoStartLinux import AutoStartLinux
 from core.autostart.AutoStartMac import AutoStartMac
 from core.autostart.AutoStartWindows import AutoStartWindows
-from key_cursor_config.ui.KeyCursorConfigWidget import KeyCursorConfigWidget
+from key_cursor_config.ui.KeyCursorConfig import KeyCursorConfig
+from model.StyleLoader import StyleLoader
 
 if __name__ == "__main__":
     config = Config()
+    style_loader = StyleLoader(stylesheet_variables_path, stylesheet_folder_path)
 
     system = platform.system()
     if system == "Windows":
@@ -26,7 +29,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
 
-    window = KeyCursorConfigWidget(config, autostart)
+    window = KeyCursorConfig(config, autostart, style_loader)
     window.show()
 
     sys.exit(app.exec_())

@@ -1,0 +1,21 @@
+# Colours
+@color_black = #181c1f
+@color_blue = #366efc
+@color_red = #ff5349
+@color_white = #f5f5f5
+
+# Size
+@spacing_small = 10px
+@spacing_large = 20px
+@item_height = 40px
+@border_radius = 10px
+
+# Font
+@font_size_small = 10px
+@font_size_normal = 13px
+
+# Image
+@image_arrow_down_black = url(./assets/arrow_down_black.png)
+@image_arrow_up_black = url(./assets/arrow_up_black.png)
+@image_arrow_down_white = url(./assets/arrow_down_white.png)
+@image_arrow_up_white = url(./assets/arrow_up_white.png)

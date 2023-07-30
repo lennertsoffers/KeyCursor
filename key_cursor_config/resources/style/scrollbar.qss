@@ -1,0 +1,127 @@
+QScrollBar:vertical {
+    border: none;
+    width: 14px;
+    margin: 15px 0 15px 0;
+    border-radius: 0px;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+    background: none;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+QScrollBar::handle:vertical {
+    min-height: 30px;
+    border-radius: 3px;
+    margin: 0px 4px;
+}
+
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 15px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line:vertical {
+    border: none;
+    height: 15px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar.scrollbar_black:vertical {
+    background-color: @color_black;
+    border: none;
+    width: 14px;
+    margin: 15px 0 15px 0;
+    border-radius: 0px;
+}
+
+QScrollBar.scrollbar_black::handle {
+    background-color: @color_white;
+}
+
+QScrollBar.scrollbar_black::sub-line {
+    image: @image_arrow_up_white;
+    background-color: @color_black;
+}
+
+QScrollBar.scrollbar_black::add-line {
+    image: @image_arrow_down_white;
+    background-color: @color_black;
+}
+
+
+QScrollBar.scrollbar_white {
+    background-color: @color_white;
+}
+
+QScrollBar.scrollbar_white::handle {
+    background-color: @color_black;
+}
+
+QScrollBar.scrollbar_white::sub-line {
+    image: @image_arrow_up_black;
+    background-color: @color_white;
+}
+
+QScrollBar.scrollbar_white::add-line {
+    image: @image_arrow_down_black;
+    background-color: @color_white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.scrollbar_black QScrollBar:vertical {
+    background-color: @color_black;
+    border: none;
+    width: 14px;
+    margin: 15px 0 15px 0;
+    border-radius: 0px;
+}
+
+.scrollbar_black QScrollBar::handle {
+    background-color: @color_white;
+}
+
+.scrollbar_black QScrollBar::sub-line {
+    image: @image_arrow_up_white;
+    background-color: @color_black;
+}
+
+.scrollbar_black QScrollBar::add-line {
+    image: @image_arrow_down_white;
+    background-color: @color_black;
+}
+
+
+.scrollbar_white QScrollBar {
+    background-color: @color_white;
+}
+
+.scrollbar_white QScrollBar::handle {
+    background-color: @color_black;
+}
+
+.scrollbar_white QScrollBar::sub-line {
+    image: @image_arrow_up_black;
+    background-color: @color_white;
+}
+
+.scrollbar_white QScrollBar::add-line {
+    image: @image_arrow_down_black;
+    background-color: @color_white;
+}

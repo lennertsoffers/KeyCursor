@@ -1,0 +1,13 @@
+.button_confirm {
+    color: @color_white;
+    height: @item_height;
+    background-color: @color_blue;
+    border-radius: @border_radius;
+}
+
+.button_cancel {
+    color: @color_white;
+    height: @item_height;
+    background-color: @color_red;
+    border-radius: @border_radius;
+}
