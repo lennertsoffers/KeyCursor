@@ -1,0 +1,4 @@
+.checkbox {
+    color: @color_white;
+    padding-left: 5px;
+}

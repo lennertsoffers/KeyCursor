@@ -4,16 +4,28 @@ from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QComboBox, QHBoxLayout
 
 from key_cursor_config.model.Key import Key
 from key_cursor_config.model.KeyBind import KeyBind
-from key_cursor_config.ui.global_style import *
+from config.config import *
+from model.StyleLoader import StyleLoader
 
 
 class AddKeyBindDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, style_loader: StyleLoader, parent=None):
         super().__init__(parent)
 
+        self._style_loader = style_loader
+
+        self._init_layout()
+
+    def get_key_bind(self) -> KeyBind:
+        return KeyBind(self._to_press_dropdown.currentText(), self._to_generate_dropdown.currentText())
+
+    def _init_layout(self):
+        # Window
         self.setWindowTitle("Add new key binding")
         self.setFixedSize(300, 270)
         self.setWindowIcon(QIcon(icon_path))
+        self.setProperty(CLASS_PROPERTY_NAME, "key_cursor_config")
+        self.setStyleSheet(self._style_loader.get_merged_stylesheets(stylesheets_AddKeyBindDialog))
 
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignTop)
@@ -23,48 +35,43 @@ class AddKeyBindDialog(QDialog):
         dropdown_layout_to_press = QVBoxLayout()
         dropdown_layout_to_press.setAlignment(Qt.AlignTop)
         dropdown_layout_to_press.setSpacing(10)
+        to_press_label = QLabel("Key to press:")
+        to_press_label.setFont(font_poppins)
+        to_press_label.setProperty(CLASS_PROPERTY_NAME, "label")
+        self._to_press_dropdown = QComboBox()
+        self._to_press_dropdown.addItems(e.value for e in Key)
+        self._to_press_dropdown.setFont(font_poppins)
+        self._to_press_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
+        dropdown_layout_to_press.addWidget(to_press_label)
+        dropdown_layout_to_press.addWidget(self._to_press_dropdown)
 
         dropdown_layout_to_generate = QVBoxLayout()
         dropdown_layout_to_generate.setAlignment(Qt.AlignTop)
         dropdown_layout_to_generate.setSpacing(10)
-
-        to_press_label = QLabel("Key to press:")
-        to_press_label.setFont(font_poppins)
-        to_press_label.setStyleSheet(label_style)
-        self._to_press_dropdown = QComboBox()
-        self._to_press_dropdown.addItems(e.value for e in Key)
-        self._to_press_dropdown.setFont(font_poppins)
-        self._to_press_dropdown.setStyleSheet(dropdown_style)
-        dropdown_layout_to_press.addWidget(to_press_label)
-        dropdown_layout_to_press.addWidget(self._to_press_dropdown)
-
         to_generate_label = QLabel("Key to generate:")
         to_generate_label.setFont(font_poppins)
-        to_generate_label.setStyleSheet(label_style)
+        to_generate_label.setProperty(CLASS_PROPERTY_NAME, "label")
         self._to_generate_dropdown = QComboBox()
         self._to_generate_dropdown.addItems(e.value for e in Key)
         self._to_generate_dropdown.setFont(font_poppins)
-        self._to_generate_dropdown.setStyleSheet(dropdown_style)
+        self._to_generate_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
         dropdown_layout_to_generate.addWidget(to_generate_label)
         dropdown_layout_to_generate.addWidget(self._to_generate_dropdown)
 
         button_layout = QHBoxLayout()
         confirm_button = QPushButton("Confirm", self)
         confirm_button.clicked.connect(self.accept)
-        confirm_button.setStyleSheet(button_confirm_style)
         confirm_button.setFont(font_poppins)
         confirm_button.setCursor(Qt.PointingHandCursor)
+        confirm_button.setProperty(CLASS_PROPERTY_NAME, "button_confirm")
         cancel_button = QPushButton("Cancel", self)
         cancel_button.clicked.connect(self.reject)
-        cancel_button.setStyleSheet(button_cancel_style)
         cancel_button.setFont(font_poppins)
         cancel_button.setCursor(Qt.PointingHandCursor)
+        cancel_button.setProperty(CLASS_PROPERTY_NAME, "button_cancel")
         button_layout.addWidget(confirm_button)
         button_layout.addWidget(cancel_button)
 
         layout.addLayout(dropdown_layout_to_press)
         layout.addLayout(dropdown_layout_to_generate)
         layout.addLayout(button_layout)
-
-    def get_key_bind(self) -> KeyBind:
-        return KeyBind(self._to_press_dropdown.currentText(), self._to_generate_dropdown.currentText())

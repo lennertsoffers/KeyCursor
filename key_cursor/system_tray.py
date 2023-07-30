@@ -28,7 +28,7 @@ def create_icon(exit_event):
     if not Icon.HAS_MENU or not Icon.HAS_DEFAULT_ACTION:
         return
 
-    image = Image.open("assets/icon_old.png")
+    image = Image.open("./resources/assets/icon.png")
 
     menu_item_configure = MenuItem("Configure", on_configure_click, default=True)
     menu_item_exit = MenuItem("Exit", functools.partial(on_exit_click, exit_event))

@@ -1,0 +1,51 @@
+.combobox {
+    border: none;
+    height: @item_height;
+    border-radius: @border_radius;
+    padding-left: @spacing_small;
+}
+
+.combobox::drop-down {
+    border: 0px;
+}
+
+.combobox::down-arrow {
+    width: 18px;
+    height: 7px;
+    padding-right: @spacing_small;
+}
+
+.combobox QAbstractItemView {
+    border: none;
+    outline: 0px;
+}
+
+.combobox_black {
+    background-color: @color_black;
+    color: @color_white;
+}
+
+.combobox_black QAbstractItemView {
+    background: @color_black;
+    selection-background-color: @color_blue;
+    selection-color: @color_white;
+    color: @color_white;
+}
+
+.combobox_black::down-arrow {
+    image: @image_arrow_down_white;
+}
+
+.combobox_white {
+    background-color: @color_white;
+}
+
+.combobox_white::down-arrow {
+    image: @image_arrow_down_black;
+}
+
+.combobox_white QAbstractItemView {
+    background: @color_white;
+    selection-background-color: @color_blue;
+    selection-color: @color_black;
+}

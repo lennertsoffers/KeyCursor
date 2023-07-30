@@ -1,0 +1,6 @@
+.scroll_area {
+    background-color: transparent;
+    padding: 2px 5px 2px 2px;
+    border-radius: @border_radius;
+    border: 2px solid @color_white;
+}

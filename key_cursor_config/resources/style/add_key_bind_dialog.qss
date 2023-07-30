@@ -1,0 +1,3 @@
+.add_key_bind_dialog {
+    background-color: @color_black;
+}
