@@ -3,5 +3,5 @@ __pycache__/
 build/build
 build/dist
 
-key_cursor_config/key_cursor_config
-key_cursor/key_cursor_config
+key_cursor_config/key_cursor_config/
+key_cursor/key_cursor_config/
