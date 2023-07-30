@@ -6,9 +6,9 @@ from PyQt5.QtWidgets import QApplication
 
 from config.config import *
 from core.Config import Config
-from core.autostart.AutoStartLinux import AutoStartLinux
-from core.autostart.AutoStartMac import AutoStartMac
-from core.autostart.AutoStartWindows import AutoStartWindows
+from autostart.AutoStartLinux import AutoStartLinux
+from autostart.AutoStartMac import AutoStartMac
+from autostart.AutoStartWindows import AutoStartWindows
 from key_cursor_config.ui.KeyCursorConfig import KeyCursorConfig
 from model.StyleLoader import StyleLoader
 

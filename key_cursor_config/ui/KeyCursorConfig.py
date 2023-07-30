@@ -9,7 +9,7 @@ from PyQt5 import QtGui
 
 from core.Config import Config
 
-from core.autostart.AutoStart import AutoStart
+from autostart.AutoStart import AutoStart
 from key_cursor_config.model.KeyBind import KeyBind
 from key_cursor_config.ui.AddKeyBindDialog import AddKeyBindDialog
 from config.config import *
