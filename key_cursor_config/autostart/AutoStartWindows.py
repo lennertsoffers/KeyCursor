@@ -4,7 +4,7 @@ import winshell
 from win32com.client import Dispatch
 
 from core.Global import Global
-from core.autostart.AutoStart import AutoStart
+from autostart.AutoStart import AutoStart
 
 
 def get_shortcut_folder_path():

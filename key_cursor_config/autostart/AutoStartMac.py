@@ -1,4 +1,4 @@
-from core.autostart.AutoStart import AutoStart
+from autostart.AutoStart import AutoStart
 
 
 class AutoStartMac(AutoStart):
