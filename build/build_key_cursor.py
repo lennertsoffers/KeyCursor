@@ -5,7 +5,7 @@ from build.util.log_utils import step
 # --- CONFIG --- #
 NAME = "KeyCursor"
 ICON_PATH = "../key_cursor_config/resources/assets/icon.png"
-MAIN_FILE_PATH = "../key_cursor/KeyCursor.py"
+MAIN_FILE_PATH = "../key_cursor/KeyCursorApplication.py"
 
 if __name__ == "__main__":
     step("Building executable")

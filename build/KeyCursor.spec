@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['..\\key_cursor\\KeyCursor.py'],
+    ['..\\key_cursor\\KeyCursorApplication.py'],
     pathex=[],
     binaries=[],
     datas=[],
