@@ -11,3 +11,6 @@ mappings:
   l: right
   o: end
   u: home
+run_at_startup: false
+activation_key: space
+suspension_key: Scroll_Lock
