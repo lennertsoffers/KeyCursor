@@ -4,7 +4,6 @@ import time
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QScrollArea, QPushButton, QCheckBox, QDialog
 from PyQt5.QtCore import Qt
-import psutil
 from PyQt5 import QtGui
 
 from core.Config import Config
@@ -14,15 +13,7 @@ from key_cursor_config.model.KeyBind import KeyBind
 from key_cursor_config.ui.AddKeyBindDialog import AddKeyBindDialog
 from config.config import *
 from model.StyleLoader import StyleLoader
-
-
-def get_daemon_processes():
-    processes = []
-    for process in psutil.process_iter():
-        if "KeyCursor" in process.name() and "KeyCursorConfig" not in process.name():
-            processes.append(process)
-
-    return processes
+from util.process_util import get_key_cursor_processes, is_key_cursor_running
 
 
 class KeyCursorConfig(QWidget):
@@ -41,7 +32,7 @@ class KeyCursorConfig(QWidget):
         self._load_from_config()
 
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
-        daemons = get_daemon_processes()
+        daemons = get_key_cursor_processes()
         if len(daemons) > 0:
             for daemon in daemons:
                 daemon.kill()
@@ -131,14 +122,13 @@ class KeyCursorConfig(QWidget):
             self._autostart.disable_autostart()
 
     def _on_enable_button_click(self):
-        daemons = get_daemon_processes()
-        if len(daemons) == 0:
-            subprocess.Popen("KeyCursor")
-        else:
-            for daemon in daemons:
+        if is_key_cursor_running():
+            for daemon in get_key_cursor_processes():
                 daemon.kill()
+        else:
+            subprocess.Popen("KeyCursor")
 
-        time.sleep(0.25)
+        time.sleep(0.05)
         self._update_enable_button()
 
     def _on_add_button_click(self):
@@ -169,12 +159,12 @@ class KeyCursorConfig(QWidget):
             self._config.set_run_at_startup(False)
 
     def _update_enable_button(self):
-        if len(get_daemon_processes()) == 0:
-            self._enable_button.setText("Enable")
-            self._enable_button.setProperty(CLASS_PROPERTY_NAME, "button_confirm")
-        else:
+        if is_key_cursor_running():
             self._enable_button.setText("Disable")
             self._enable_button.setProperty(CLASS_PROPERTY_NAME, "button_cancel")
+        else:
+            self._enable_button.setText("Enable")
+            self._enable_button.setProperty(CLASS_PROPERTY_NAME, "button_confirm")
         self._enable_button.style().unpolish(self._enable_button)
         self._enable_button.style().polish(self._enable_button)
 
