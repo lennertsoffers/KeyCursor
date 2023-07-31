@@ -6,6 +6,7 @@ from pystray import Menu, MenuItem, Icon
 
 from Global import Global
 from State import State
+from util.process_util import start_key_cursor_config
 
 
 class SystemTrayIcon:
@@ -29,7 +30,7 @@ class SystemTrayIcon:
         self._icon.update_menu()
 
     def _on_configure_click(self, _icon, _item):
-        subprocess.Popen("KeyCursorConfig")
+        start_key_cursor_config()
 
     def _on_suspend_click(self, _icon, _item):
         self._state.toggle_suspension()

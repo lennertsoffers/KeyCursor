@@ -11,8 +11,10 @@ from autostart.AutoStartMac import AutoStartMac
 from autostart.AutoStartWindows import AutoStartWindows
 from key_cursor_config.ui.KeyCursorConfig import KeyCursorConfig
 from model.StyleLoader import StyleLoader
+from util.process_util import is_key_cursor_config_running
 
-if __name__ == "__main__":
+
+def main():
     config = Config()
     style_loader = StyleLoader(stylesheet_variables_path, stylesheet_folder_path)
 
@@ -33,3 +35,8 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    if not is_key_cursor_config_running():
+        main()

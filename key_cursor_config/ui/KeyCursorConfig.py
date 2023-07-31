@@ -1,4 +1,3 @@
-import subprocess
 import time
 
 from PyQt5.QtGui import QIcon
@@ -13,7 +12,7 @@ from key_cursor_config.model.KeyBind import KeyBind
 from key_cursor_config.ui.AddKeyBindDialog import AddKeyBindDialog
 from config.config import *
 from model.StyleLoader import StyleLoader
-from util.process_util import get_key_cursor_processes, is_key_cursor_running
+from util.process_util import get_key_cursor_processes, is_key_cursor_running, start_key_cursor
 
 
 class KeyCursorConfig(QWidget):
@@ -36,7 +35,7 @@ class KeyCursorConfig(QWidget):
         if len(daemons) > 0:
             for daemon in daemons:
                 daemon.kill()
-            subprocess.Popen("KeyCursor")
+            start_key_cursor()
 
     def _init_layout(self):
         # Window
@@ -126,7 +125,7 @@ class KeyCursorConfig(QWidget):
             for daemon in get_key_cursor_processes():
                 daemon.kill()
         else:
-            subprocess.Popen("KeyCursor")
+            start_key_cursor()
 
         time.sleep(0.05)
         self._update_enable_button()

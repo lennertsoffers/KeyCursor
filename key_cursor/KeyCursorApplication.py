@@ -2,10 +2,10 @@ from KeyManager import KeyManager
 from State import State
 from SystemTrayIcon import SystemTrayIcon
 from core.Config import Config
+from util.process_util import is_key_cursor_running
 
 
 def main():
-    # TODO - Don't start twice when executing
     state = State()
     config = Config()
     system_tray_icon = SystemTrayIcon(state)
@@ -16,4 +16,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if not is_key_cursor_running():
+        main()

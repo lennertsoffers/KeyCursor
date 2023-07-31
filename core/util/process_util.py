@@ -1,3 +1,5 @@
+import subprocess
+
 import psutil
 from psutil import Process
 from typing import List
@@ -26,3 +28,11 @@ def get_key_cursor_config_processes() -> List[Process]:
             processes.append(process)
 
     return processes
+
+def start_key_cursor():
+    if not is_key_cursor_running():
+        subprocess.Popen("KeyCursor")
+
+def start_key_cursor_config():
+    if not is_key_cursor_config_running():
+        subprocess.Popen("KeyCursorConfig")
