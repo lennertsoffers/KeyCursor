@@ -4,19 +4,21 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication
 
-from config.config import *
 from core.Config import Config
 from autostart.AutoStartLinux import AutoStartLinux
 from autostart.AutoStartMac import AutoStartMac
 from autostart.AutoStartWindows import AutoStartWindows
 from key_cursor_config.ui.KeyCursorConfig import KeyCursorConfig
 from model.StyleLoader import StyleLoader
-from util.process_util import is_key_cursor_config_running
+from util.process_util import kill_other_key_cursor_config_processes
+# noinspection PyUnresolvedReferences
+import resources.resources
 
 
 def main():
     config = Config()
-    style_loader = StyleLoader(stylesheet_variables_path, stylesheet_folder_path)
+
+    style_loader = StyleLoader(":/style/variables.qss")
 
     system = platform.system()
     if system == "Windows":
@@ -38,5 +40,5 @@ def main():
 
 
 if __name__ == "__main__":
-    if not is_key_cursor_config_running():
-        main()
+    kill_other_key_cursor_config_processes()
+    main()

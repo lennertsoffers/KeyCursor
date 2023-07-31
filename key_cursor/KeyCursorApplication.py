@@ -2,7 +2,7 @@ from KeyManager import KeyManager
 from State import State
 from SystemTrayIcon import SystemTrayIcon
 from core.Config import Config
-from util.process_util import is_key_cursor_running
+from util.process_util import kill_other_key_cursor_processes
 
 
 def main():
@@ -16,5 +16,5 @@ def main():
 
 
 if __name__ == "__main__":
-    if not is_key_cursor_running():
-        main()
+    kill_other_key_cursor_processes()
+    main()

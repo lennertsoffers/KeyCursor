@@ -4,30 +4,24 @@ from PyQt5.QtGui import QFont
 font_poppins = QFont()
 font_poppins.setFamily("Poppins")
 
-# Images
-assets_dir = "./resources/assets"
-icon_path = f"{assets_dir}/icon.png"
-
 # Stylesheets
 CLASS_PROPERTY_NAME = "class"
-stylesheet_folder_path = "./resources/style"
-stylesheet_variables_path = "./resources/style/variables.qss"
 
 stylesheets_KeyCursorConfig = [
-    "global",
-    "button",
-    "checkbox",
-    "label",
-    "clear",
-    "scroll_area",
-    "key_cursor_config"
+    ":/style/global.qss",
+    ":/style/button.qss",
+    ":/style/checkbox.qss",
+    ":/style/label.qss",
+    ":/style/clear.qss",
+    ":/style/scroll_area.qss",
+    ":/style/key_cursor_config.qss"
 ]
 
 stylesheets_AddKeyBindDialog = [
-    "global",
-    "button",
-    "label",
-    "combobox",
-    "scrollbar",
-    "add_key_bind_dialog"
+    ":/style/global.qss",
+    ":/style/button.qss",
+    ":/style/label.qss",
+    ":/style/combobox.qss",
+    ":/style/scrollbar.qss",
+    ":/style/add_key_bind_dialog.qss"
 ]

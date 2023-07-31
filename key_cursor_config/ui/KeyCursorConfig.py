@@ -31,16 +31,13 @@ class KeyCursorConfig(QWidget):
         self._load_from_config()
 
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
-        daemons = get_key_cursor_processes()
-        if len(daemons) > 0:
-            for daemon in daemons:
-                daemon.kill()
+        if is_key_cursor_running():
             start_key_cursor()
 
     def _init_layout(self):
         # Window
         self.setWindowTitle("KeyCursorConfig")
-        self.setWindowIcon(QIcon(icon_path))
+        self.setWindowIcon(QIcon(":/assets/icon.png"))
         self.setFixedSize(340, 400)
         self.setProperty(CLASS_PROPERTY_NAME, "key_cursor_config")
         self.setStyleSheet(self._style_loader.get_merged_stylesheets(stylesheets_KeyCursorConfig))
@@ -73,7 +70,7 @@ class KeyCursorConfig(QWidget):
         key_binds_scroll_area.setFixedHeight(200)
         key_binds_scroll_area.setWidgetResizable(True)
         key_binds_scroll_area.verticalScrollBar().setProperty(CLASS_PROPERTY_NAME, "scrollbar_black")
-        key_binds_scroll_area.verticalScrollBar().setStyleSheet(self._style_loader.get_stylesheet("scrollbar"))
+        key_binds_scroll_area.verticalScrollBar().setStyleSheet(self._style_loader.get_stylesheet(":/style/scrollbar.qss"))
         key_binds_scroll_area.setProperty(CLASS_PROPERTY_NAME, "scroll_area")
         key_binds_widget = QWidget(key_binds_scroll_area)
         key_binds_widget.setProperty(CLASS_PROPERTY_NAME, "clear")

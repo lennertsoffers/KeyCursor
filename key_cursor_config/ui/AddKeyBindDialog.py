@@ -23,7 +23,7 @@ class AddKeyBindDialog(QDialog):
         # Window
         self.setWindowTitle("Add new key binding")
         self.setFixedSize(300, 270)
-        self.setWindowIcon(QIcon(icon_path))
+        self.setWindowIcon(QIcon(":/assets/icon.png"))
         self.setProperty(CLASS_PROPERTY_NAME, "key_cursor_config")
         self.setStyleSheet(self._style_loader.get_merged_stylesheets(stylesheets_AddKeyBindDialog))
 

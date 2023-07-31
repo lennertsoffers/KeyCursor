@@ -1,4 +1,3 @@
-import subprocess
 from threading import Event, Thread
 
 from PIL import Image

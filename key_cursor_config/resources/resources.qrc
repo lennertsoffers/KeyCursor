@@ -1,0 +1,23 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="assets">
+        <file alias="arrow_down_black.png">./assets/arrow_down_black.png</file>
+        <file alias="arrow_up_black.png">./assets/arrow_up_black.png</file>
+        <file alias="arrow_down_white.png">./assets/arrow_down_white.png</file>
+        <file alias="arrow_up_white.png">./assets/arrow_up_white.png</file>
+        <file alias="icon.png">./assets/icon.png</file>
+    </qresource>
+    <qresource prefix="style">
+        <file alias="add_key_bind_dialog.qss">./style/add_key_bind_dialog.qss</file>
+        <file alias="button.qss">./style/button.qss</file>
+        <file alias="checkbox.qss">./style/checkbox.qss</file>
+        <file alias="clear.qss">./style/clear.qss</file>
+        <file alias="combobox.qss">./style/combobox.qss</file>
+        <file alias="global.qss">./style/global.qss</file>
+        <file alias="key_cursor_config.qss">./style/key_cursor_config.qss</file>
+        <file alias="label.qss">./style/label.qss</file>
+        <file alias="scroll_area.qss">./style/scroll_area.qss</file>
+        <file alias="scrollbar.qss">./style/scrollbar.qss</file>
+        <file alias="variables.qss">./style/variables.qss</file>
+    </qresource>
+</RCC>
