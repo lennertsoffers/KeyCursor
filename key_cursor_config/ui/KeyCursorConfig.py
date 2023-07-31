@@ -1,10 +1,8 @@
-import subprocess
 import time
 
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QScrollArea, QPushButton, QCheckBox, QDialog
 from PyQt5.QtCore import Qt
-import psutil
 from PyQt5 import QtGui
 
 from core.Config import Config
@@ -14,15 +12,7 @@ from key_cursor_config.model.KeyBind import KeyBind
 from key_cursor_config.ui.AddKeyBindDialog import AddKeyBindDialog
 from config.config import *
 from model.StyleLoader import StyleLoader
-
-
-def get_daemon_processes():
-    processes = []
-    for process in psutil.process_iter():
-        if "KeyCursor" in process.name() and "KeyCursorConfig" not in process.name():
-            processes.append(process)
-
-    return processes
+from util.process_util import get_key_cursor_processes, is_key_cursor_running, start_key_cursor
 
 
 class KeyCursorConfig(QWidget):
@@ -41,16 +31,13 @@ class KeyCursorConfig(QWidget):
         self._load_from_config()
 
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
-        daemons = get_daemon_processes()
-        if len(daemons) > 0:
-            for daemon in daemons:
-                daemon.kill()
-            subprocess.Popen("KeyCursor")
+        if is_key_cursor_running():
+            start_key_cursor()
 
     def _init_layout(self):
         # Window
         self.setWindowTitle("KeyCursorConfig")
-        self.setWindowIcon(QIcon(icon_path))
+        self.setWindowIcon(QIcon(":/assets/icon.png"))
         self.setFixedSize(340, 400)
         self.setProperty(CLASS_PROPERTY_NAME, "key_cursor_config")
         self.setStyleSheet(self._style_loader.get_merged_stylesheets(stylesheets_KeyCursorConfig))
@@ -83,7 +70,7 @@ class KeyCursorConfig(QWidget):
         key_binds_scroll_area.setFixedHeight(200)
         key_binds_scroll_area.setWidgetResizable(True)
         key_binds_scroll_area.verticalScrollBar().setProperty(CLASS_PROPERTY_NAME, "scrollbar_black")
-        key_binds_scroll_area.verticalScrollBar().setStyleSheet(self._style_loader.get_stylesheet("scrollbar"))
+        key_binds_scroll_area.verticalScrollBar().setStyleSheet(self._style_loader.get_stylesheet(":/style/scrollbar.qss"))
         key_binds_scroll_area.setProperty(CLASS_PROPERTY_NAME, "scroll_area")
         key_binds_widget = QWidget(key_binds_scroll_area)
         key_binds_widget.setProperty(CLASS_PROPERTY_NAME, "clear")
@@ -131,14 +118,13 @@ class KeyCursorConfig(QWidget):
             self._autostart.disable_autostart()
 
     def _on_enable_button_click(self):
-        daemons = get_daemon_processes()
-        if len(daemons) == 0:
-            subprocess.Popen("KeyCursor")
-        else:
-            for daemon in daemons:
+        if is_key_cursor_running():
+            for daemon in get_key_cursor_processes():
                 daemon.kill()
+        else:
+            start_key_cursor()
 
-        time.sleep(0.25)
+        time.sleep(0.05)
         self._update_enable_button()
 
     def _on_add_button_click(self):
@@ -169,12 +155,12 @@ class KeyCursorConfig(QWidget):
             self._config.set_run_at_startup(False)
 
     def _update_enable_button(self):
-        if len(get_daemon_processes()) == 0:
-            self._enable_button.setText("Enable")
-            self._enable_button.setProperty(CLASS_PROPERTY_NAME, "button_confirm")
-        else:
+        if is_key_cursor_running():
             self._enable_button.setText("Disable")
             self._enable_button.setProperty(CLASS_PROPERTY_NAME, "button_cancel")
+        else:
+            self._enable_button.setText("Enable")
+            self._enable_button.setProperty(CLASS_PROPERTY_NAME, "button_confirm")
         self._enable_button.style().unpolish(self._enable_button)
         self._enable_button.style().polish(self._enable_button)
 

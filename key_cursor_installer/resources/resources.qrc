@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="assets">
+        <file alias="icon.png">./assets/icon.png</file>
+        <file alias="watermark.png">./assets/watermark.png</file>
+    </qresource>
+</RCC>

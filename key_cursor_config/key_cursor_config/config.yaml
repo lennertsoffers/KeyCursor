@@ -11,5 +11,3 @@ mappings:
   s: A
   y: A
 run_at_startup: false
-activation_key: space
-suspension_key: Scroll

@@ -1,5 +1,6 @@
 step_index = 1
 
+
 def step(message: str):
     global step_index
 
