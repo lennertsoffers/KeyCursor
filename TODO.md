@@ -1,6 +1,9 @@
 # Features
 
-- Hotkey to suspend KeyCursor (configurable)
+- Hotkey to suspend KeyCursor
+  - Create hotkey
+  - Add configuration option
+- Fix system tray icon
 - KeyCursor installer
     - Download files
       - Executables

@@ -9,7 +9,7 @@ class InstallerStepDownload(InstallerStep):
         super().__init__(index, "Downloading archives", progress_signal)
 
     def _run(self):
-        response = requests.get("https://lennertsoffers.be/hosting/key_cursor.zip", stream=True)
+        response = requests.get("https://lennertsoffers.be/key_cursor/KeyCursor.zip", stream=True)
         total_size = int(response.headers.get('content-length', 0))
         bytes_downloaded = 0
         with open("key_cursor.zip", "wb") as file:

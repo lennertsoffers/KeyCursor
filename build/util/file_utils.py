@@ -1,6 +1,7 @@
 import filecmp
 import os
 import shutil
+import zipfile
 
 
 def copy_with_updates(src_dir, dest_dir):
@@ -27,3 +28,15 @@ def copy_with_updates(src_dir, dest_dir):
             if not os.path.exists(src_path):
                 os.remove(dest_path)
                 print(f"Removed {file}")
+
+
+def zip_files(src_files, zip_filename):
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for src_file_path, arcname in src_files:
+            zipf.write(src_file_path, arcname=arcname)
+
+
+def remove_file_if_exists(file_path):
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        print(f"Removed {file_path}")

@@ -1,0 +1,16 @@
+mappings:
+  I: Up
+  J: Left
+  K: down
+  L: Right
+  O: End
+  U: Home
+  i: up
+  j: left
+  k: down
+  l: right
+  o: end
+  u: home
+run_at_startup: true
+suspension_key: Scroll_Lock
+activation_key: Space
