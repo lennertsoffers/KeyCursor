@@ -2,6 +2,8 @@ __pycache__/
 .idea
 build/build
 build/dist
+build/publish
+build/env_config/config.json
 
 /key_cursor_config/key_cursor_config/
 /key_cursor/key_cursor_config/

@@ -6,11 +6,21 @@ from build.util.log_utils import step
 NAME = "KeyCursorConfig"
 ICON_PATH = "../key_cursor_config/resources/assets/icon.png"
 MAIN_FILE_PATH = "../key_cursor_config/KeyCursorConfigApplication.py"
+RESOURCES_DIRECTORY_PATH = "../key_cursor_config/resources"
 
-if __name__ == "__main__":
+
+def build_key_cursor_config():
+    step("Bundling resource files")
+    bundle_command = (
+        f"pyrcc5 "
+        f"{RESOURCES_DIRECTORY_PATH}/resources.qrc "
+        f"-o "
+        f"{RESOURCES_DIRECTORY_PATH}/resources.py"
+    )
+    os.system(bundle_command)
+
     step("Building executable")
-
-    start_command = (
+    build_command = (
         f"pyinstaller {MAIN_FILE_PATH} "
         f"--onefile "
         f"--noconsole "
@@ -18,5 +28,8 @@ if __name__ == "__main__":
         f"--name {NAME} "
         f"--noconfirm"
     )
+    os.system(build_command)
 
-    os.system(start_command)
+
+if __name__ == "__main__":
+    build_key_cursor_config()
