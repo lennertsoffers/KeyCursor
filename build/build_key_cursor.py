@@ -21,3 +21,7 @@ def build_key_cursor():
     )
 
     os.system(build_command)
+
+
+if __name__ == "__main__":
+    build_key_cursor()

@@ -4,7 +4,7 @@ from PIL import Image
 from pystray import Menu, MenuItem, Icon
 
 from Global import Global
-from State import State
+from model.State import State
 from util.process_util import start_key_cursor_config
 
 
@@ -51,6 +51,8 @@ class SystemTrayIcon:
             return
 
         image = Image.open(Global.ICON_PATH)
+
+        print("icon")
 
         self._icon = Icon(Global.APPLICATION_NAME, image, Global.APPLICATION_NAME, menu=self._create_menu())
         self._icon.run()

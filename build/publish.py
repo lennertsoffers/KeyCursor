@@ -26,7 +26,8 @@ def publish_key_cursor():
     files_to_archive = [
         ("./dist/KeyCursor.exe", "KeyCursor.exe"),
         ("./dist/KeyCursorConfig.exe", "KeyCursorConfig.exe"),
-        ("./resources/config.yaml", "key_cursor_config/config.yaml")
+        ("./resources/config.yaml", "key_cursor_config/config.yaml"),
+        ("./resources/icon.png", "resources/assets/icon.png")
     ]
     file_utils.zip_files(files_to_archive, "KeyCursor.zip")
 

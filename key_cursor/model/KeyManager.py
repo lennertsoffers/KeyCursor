@@ -1,8 +1,8 @@
 import keyboard
 
 from Config import Config
-from State import State
-from SystemTrayIcon import SystemTrayIcon
+from model.State import State
+from model.SystemTrayIcon import SystemTrayIcon
 
 
 class KeyManager:

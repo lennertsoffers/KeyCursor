@@ -1,6 +1,6 @@
-from KeyManager import KeyManager
-from State import State
-from SystemTrayIcon import SystemTrayIcon
+from model.KeyManager import KeyManager
+from model.State import State
+from model.SystemTrayIcon import SystemTrayIcon
 from core.Config import Config
 from util.process_util import kill_other_key_cursor_processes
 
