@@ -5,6 +5,7 @@ import time
 from PyQt5.QtCore import pyqtSignal
 
 from model.InstallerStep import InstallerStep
+from util.StepUtil import simulate_work
 
 
 class InstallerStepRemovePreviousVersion(InstallerStep):
@@ -17,5 +18,4 @@ class InstallerStepRemovePreviousVersion(InstallerStep):
         if os.path.exists(self._install_directory):
             shutil.rmtree(self._install_directory)
 
-        time.sleep(1)
-        self.get_progress_signal().emit(100)
+        simulate_work(self.get_progress_signal())

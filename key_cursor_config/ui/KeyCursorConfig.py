@@ -1,7 +1,8 @@
 import time
 
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QScrollArea, QPushButton, QCheckBox, QDialog
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QScrollArea, QPushButton, QCheckBox, QDialog, QLabel, \
+    QComboBox
 from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
 
@@ -11,6 +12,7 @@ from autostart.AutoStart import AutoStart
 from key_cursor_config.model.KeyBind import KeyBind
 from key_cursor_config.ui.AddKeyBindDialog import AddKeyBindDialog
 from config.config import *
+from model.Key import Key
 from model.StyleLoader import StyleLoader
 from util.process_util import get_key_cursor_processes, is_key_cursor_running, start_key_cursor
 
@@ -38,7 +40,7 @@ class KeyCursorConfig(QWidget):
         # Window
         self.setWindowTitle("KeyCursorConfig")
         self.setWindowIcon(QIcon(":/assets/icon.png"))
-        self.setFixedSize(340, 400)
+        self.setFixedSize(340, 600)
         self.setProperty(CLASS_PROPERTY_NAME, "key_cursor_config")
         self.setStyleSheet(self._style_loader.get_merged_stylesheets(stylesheets_KeyCursorConfig))
 
@@ -64,6 +66,40 @@ class KeyCursorConfig(QWidget):
         checkbox_run_at_startup.setChecked(self._config.is_run_at_startup())
         checkbox_run_at_startup.stateChanged.connect(self._on_enable_on_startup_checkbox_state_change)
         main_layout.addWidget(checkbox_run_at_startup)
+
+        # Activation key dropdown
+        dropdown_layout_activation_key = QVBoxLayout()
+        dropdown_layout_activation_key.setAlignment(Qt.AlignTop)
+        dropdown_layout_activation_key.setSpacing(10)
+        activation_key_label = QLabel("Activation key:")
+        activation_key_label.setFont(font_poppins)
+        activation_key_label.setProperty(CLASS_PROPERTY_NAME, "label")
+        activation_key_dropdown = QComboBox()
+        activation_key_dropdown.addItems(e.value for e in Key)
+        activation_key_dropdown.setFont(font_poppins)
+        activation_key_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
+        activation_key_dropdown.setCurrentText(self._config.get_activation_key())
+        activation_key_dropdown.currentTextChanged.connect(self._on_activation_key_change)
+        dropdown_layout_activation_key.addWidget(activation_key_label)
+        dropdown_layout_activation_key.addWidget(activation_key_dropdown)
+        main_layout.addLayout(dropdown_layout_activation_key)
+
+        # Suspension key dropdown
+        dropdown_layout_suspension_key = QVBoxLayout()
+        dropdown_layout_suspension_key.setAlignment(Qt.AlignTop)
+        dropdown_layout_suspension_key.setSpacing(10)
+        suspension_key_label = QLabel("Suspension key:")
+        suspension_key_label.setFont(font_poppins)
+        suspension_key_label.setProperty(CLASS_PROPERTY_NAME, "label")
+        suspension_key_dropdown = QComboBox()
+        suspension_key_dropdown.addItems(e.value for e in Key)
+        suspension_key_dropdown.setFont(font_poppins)
+        suspension_key_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
+        suspension_key_dropdown.setCurrentText(self._config.get_suspension_key())
+        suspension_key_dropdown.currentTextChanged.connect(self._on_suspension_key_change)
+        dropdown_layout_suspension_key.addWidget(suspension_key_label)
+        dropdown_layout_suspension_key.addWidget(suspension_key_dropdown)
+        main_layout.addLayout(dropdown_layout_suspension_key)
 
         # Key bindings scroll area
         key_binds_scroll_area = QScrollArea(self)
@@ -153,6 +189,12 @@ class KeyCursorConfig(QWidget):
         else:
             self._autostart.disable_autostart()
             self._config.set_run_at_startup(False)
+
+    def _on_activation_key_change(self, activation_key):
+        self._config.set_activation_key(activation_key)
+
+    def _on_suspension_key_change(self, suspension_key):
+        self._config.set_suspension_key(suspension_key)
 
     def _update_enable_button(self):
         if is_key_cursor_running():

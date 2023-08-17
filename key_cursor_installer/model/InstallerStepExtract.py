@@ -4,6 +4,7 @@ import zipfile
 from PyQt5.QtCore import pyqtSignal
 
 from model.InstallerStep import InstallerStep
+from util.StepUtil import simulate_work
 
 
 class InstallerStepExtract(InstallerStep):
@@ -14,5 +15,4 @@ class InstallerStepExtract(InstallerStep):
         with zipfile.ZipFile("key_cursor.zip", "r") as zip_ref:
             zip_ref.extractall("KeyCursor")
 
-        time.sleep(1)
-        self.get_progress_signal().emit(100)
+        simulate_work(self.get_progress_signal())

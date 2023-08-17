@@ -17,7 +17,7 @@ def get_config_data():
 def save_config_data(config_data):
     with open(Global.CONFIG_FILE_PATH, "w") as file:
         try:
-            yaml.dump(config_data, file)
+            yaml.dump(config_data, file, sort_keys=False)
             return True
         except yaml.YAMLError as error:
             print(f"Error writing to the config file: {error}")
@@ -78,6 +78,10 @@ class Config:
 
         return self._suspension_key
 
+    def set_suspension_key(self, suspension_key):
+        self._suspension_key = suspension_key
+        self._save()
+
     def get_activation_key(self):
         if self._activation_key is None:
             if self._config_data and "activation_key" in self._config_data:
@@ -87,9 +91,15 @@ class Config:
 
         return self._activation_key
 
+    def set_activation_key(self, activation_key):
+        self._activation_key = activation_key
+        self._save()
+
     def _save(self):
         config_data = {
             "run_at_startup": self.is_run_at_startup(),
+            "activation_key": self.get_activation_key(),
+            "suspension_key": self.get_suspension_key(),
             "mappings": self.get_mapping()
         }
 

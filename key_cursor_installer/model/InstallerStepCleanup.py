@@ -4,6 +4,7 @@ import shutil
 from PyQt5.QtCore import pyqtSignal
 
 from model.InstallerStep import InstallerStep
+from util.StepUtil import simulate_work
 
 
 class InstallerStepCleanup(InstallerStep):
@@ -13,3 +14,5 @@ class InstallerStepCleanup(InstallerStep):
     def _run(self):
         os.remove("key_cursor.zip")
         shutil.rmtree("KeyCursor")
+
+        simulate_work(self.get_progress_signal())

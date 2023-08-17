@@ -5,6 +5,7 @@ from PyQt5.QtCore import pyqtSignal
 
 from Global import Global
 from model.InstallerStep import InstallerStep
+from util.StepUtil import simulate_work
 
 
 class InstallerStepCopyToInstallationDirectory(InstallerStep):
@@ -21,5 +22,4 @@ class InstallerStepCopyToInstallationDirectory(InstallerStep):
         except OSError as e:
             print(e)
 
-        time.sleep(1)
-        self.get_progress_signal().emit(100)
+        simulate_work(self.get_progress_signal())

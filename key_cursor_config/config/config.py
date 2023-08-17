@@ -12,6 +12,8 @@ stylesheets_KeyCursorConfig = [
     ":/style/button.qss",
     ":/style/checkbox.qss",
     ":/style/label.qss",
+    ":/style/combobox.qss",
+    ":/style/scrollbar.qss",
     ":/style/clear.qss",
     ":/style/scroll_area.qss",
     ":/style/key_cursor_config.qss"
