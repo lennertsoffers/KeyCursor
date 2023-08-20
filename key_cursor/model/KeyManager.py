@@ -1,5 +1,6 @@
 import keyboard
 
+from Keys import Keys
 from Config import Config
 from model.State import State
 from model.SystemTrayIcon import SystemTrayIcon
@@ -27,16 +28,19 @@ class KeyManager:
 
     def _press_key(self, event):
         pressed_key = event.name
+        resulting_key = pressed_key
 
         if self._state.is_activation_key_down() and not self._state.is_suspended():
             mapped_key = self._config.get_mapping().get(pressed_key)
 
             if mapped_key is not None:
-                keyboard.send(mapped_key)
+                resulting_key = mapped_key
                 self._state.set_moved()
-                return
 
-        keyboard.send(pressed_key)
+        if resulting_key in Keys.characters:
+            keyboard.write(resulting_key)
+        else:
+            keyboard.send(resulting_key)
 
     def _press_suspension_key(self, _event):
         self._state.toggle_suspension()
