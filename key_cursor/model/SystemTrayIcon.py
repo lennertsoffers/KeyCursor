@@ -52,7 +52,5 @@ class SystemTrayIcon:
 
         image = Image.open(Global.ICON_PATH)
 
-        print("icon")
-
         self._icon = Icon(Global.APPLICATION_NAME, image, Global.APPLICATION_NAME, menu=self._create_menu())
         self._icon.run()
