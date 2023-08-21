@@ -1,3 +1,6 @@
+from pynput.keyboard import Key
+
+
 class Keys:
     characters = [
         "A",
@@ -98,9 +101,13 @@ class Keys:
 
     non_characters = [
         "Ctrl",
+        "Right Ctrl",
         "Shift",
+        "Right Shift",
         "Alt",
+        "Right Alt",
         "Command",
+        "Right Command",
         "F1",
         "F2",
         "F3",
@@ -133,3 +140,52 @@ class Keys:
         "Num_Lock",
         "Caps_Lock"
     ]
+
+    modifier_keys = [
+        "shift",
+        "alt",
+        "ctrl",
+        "command"
+    ]
+
+    keyboard_to_pynput = {
+        "Ctrl": Key.ctrl_l,
+        "right Ctrl": Key.ctrl_r,
+        "Shift": Key.shift_l,
+        "right Shift": Key.shift_r,
+        "Alt": Key.alt_l,
+        "right Alt": Key.alt_r,
+        "Command": Key.cmd_l,
+        "right Command": Key.cmd_r,
+        "F1": Key.f1,
+        "F2": Key.f2,
+        "F3": Key.f3,
+        "F4": Key.f4,
+        "F5": Key.f5,
+        "F6": Key.f6,
+        "F7": Key.f7,
+        "F8": Key.f8,
+        "F9": Key.f9,
+        "F10": Key.f10,
+        "F11": Key.f11,
+        "F12": Key.f12,
+        "Escape": Key.esc,
+        "Space": Key.space,
+        "BackSpace": Key.backspace,
+        "Tab": Key.tab,
+        "Return": Key.enter,
+        "Pause": Key.pause,
+        "Scroll_Lock": Key.scroll_lock,
+        "Delete": Key.delete,
+        "Home": Key.home,
+        "Left": Key.left,
+        "Up": Key.up,
+        "Right": Key.right,
+        "Down": Key.down,
+        "Page_Up": Key.page_up,
+        "Page_Down": Key.page_down,
+        "End": Key.end,
+        "Insert": Key.insert,
+        "Num_Lock": Key.num_lock,
+        "Caps_Lock": Key.caps_lock
+    }
