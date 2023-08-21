@@ -6,13 +6,13 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QScrollArea, QPus
 from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
 
+from Keys import Keys
 from core.Config import Config
 
 from autostart.AutoStart import AutoStart
 from key_cursor_config.model.KeyBind import KeyBind
 from key_cursor_config.ui.AddKeyBindDialog import AddKeyBindDialog
 from config.config import *
-from model.Key import Key
 from model.StyleLoader import StyleLoader
 from util.process_util import get_key_cursor_processes, is_key_cursor_running, start_key_cursor
 
@@ -75,7 +75,7 @@ class KeyCursorConfig(QWidget):
         activation_key_label.setFont(font_poppins)
         activation_key_label.setProperty(CLASS_PROPERTY_NAME, "label")
         activation_key_dropdown = QComboBox()
-        activation_key_dropdown.addItems(e.value for e in Key)
+        activation_key_dropdown.addItems(Keys.non_characters)
         activation_key_dropdown.setFont(font_poppins)
         activation_key_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
         activation_key_dropdown.setCurrentText(self._config.get_activation_key())
@@ -92,7 +92,7 @@ class KeyCursorConfig(QWidget):
         suspension_key_label.setFont(font_poppins)
         suspension_key_label.setProperty(CLASS_PROPERTY_NAME, "label")
         suspension_key_dropdown = QComboBox()
-        suspension_key_dropdown.addItems(e.value for e in Key)
+        suspension_key_dropdown.addItems(Keys.non_characters)
         suspension_key_dropdown.setFont(font_poppins)
         suspension_key_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
         suspension_key_dropdown.setCurrentText(self._config.get_suspension_key())

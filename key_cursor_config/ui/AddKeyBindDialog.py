@@ -2,7 +2,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QComboBox, QHBoxLayout, QPushButton
 
-from key_cursor_config.model.Key import Key
+from Keys import Keys
 from key_cursor_config.model.KeyBind import KeyBind
 from config.config import *
 from model.StyleLoader import StyleLoader
@@ -39,7 +39,7 @@ class AddKeyBindDialog(QDialog):
         to_press_label.setFont(font_poppins)
         to_press_label.setProperty(CLASS_PROPERTY_NAME, "label")
         self._to_press_dropdown = QComboBox()
-        self._to_press_dropdown.addItems(e.value for e in Key)
+        self._to_press_dropdown.addItems([*Keys.characters, *Keys.non_characters])
         self._to_press_dropdown.setFont(font_poppins)
         self._to_press_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
         dropdown_layout_to_press.addWidget(to_press_label)
@@ -52,7 +52,7 @@ class AddKeyBindDialog(QDialog):
         to_generate_label.setFont(font_poppins)
         to_generate_label.setProperty(CLASS_PROPERTY_NAME, "label")
         self._to_generate_dropdown = QComboBox()
-        self._to_generate_dropdown.addItems(e.value for e in Key)
+        self._to_generate_dropdown.addItems([*Keys.characters, *Keys.non_characters])
         self._to_generate_dropdown.setFont(font_poppins)
         self._to_generate_dropdown.setProperty(CLASS_PROPERTY_NAME, "combobox combobox_white scrollbar_white")
         dropdown_layout_to_generate.addWidget(to_generate_label)
